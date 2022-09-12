@@ -14,6 +14,8 @@ function saveEntry(event) {
   newEntry.title = $title.value;
   newEntry.photoURL = $photoURL.value;
   newEntry.notes = $notes.value;
+  newEntry.nextEntry = data.nextEntryId;
+  data.nextEntryId++;
 }
 
 $photoURL.addEventListener('input', updatePhoto);
