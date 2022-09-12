@@ -23,11 +23,5 @@ function saveEntry(event) {
   $notes.value = '';
 }
 
-function beforeUnload(event) {
-  var dataJSON = JSON.stringify(data);
-  localStorage.setItem('journal-data', dataJSON);
-}
-
 $photoURL.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
-window.addEventListener('beforeunload', beforeUnload);
