@@ -14,8 +14,13 @@ function saveEntry(event) {
   newEntry.title = $title.value;
   newEntry.photoURL = $photoURL.value;
   newEntry.notes = $notes.value;
-  newEntry.nextEntry = data.nextEntryId;
+  newEntry.EntryID = data.nextEntryId;
   data.nextEntryId++;
+  data.entries.push(newEntry);
+  $img.setAttribute('src', '../images/placeholder-image-square.jpg');
+  $title.value = '';
+  $photoURL.value = '';
+  $notes.value = '';
 }
 
 $photoURL.addEventListener('input', updatePhoto);
