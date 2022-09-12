@@ -1,0 +1,60 @@
+body {
+  font-family: Awesome, sans-serif;
+}
+
+.journal-head {
+  padding: 0 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: white;
+  font-size: 0.75em;
+  letter-spacing: 0.75px;
+}
+
+.head-background {
+  background-color: rgb(86, 43, 129);
+  width: 100%;
+}
+
+h3 {
+  font-size: 1.25em;
+  letter-spacing: 0.5px;
+  margin: 1rem 0;
+}
+
+.journal-image {
+  width: 100%;
+  height: 35vh;
+  border-radius: 0.25rem;
+}
+
+.input-title {
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+  display: inline-block;
+  margin: 1rem 0 0.25rem;
+}
+
+.user-input {
+  width: 100%;
+  height: 4vh;
+  border: 1px solid grey;
+  border-radius: 0.25rem;
+}
+
+#notes {
+  height: 20vh;
+}
+
+.submit {
+  color: white;
+  background-color: rgb(86, 43, 129);
+  font-size: 0.75em;
+  letter-spacing: 0.5px;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  margin-top: 0.5rem;
+  float: right;
+}

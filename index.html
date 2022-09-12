@@ -18,21 +18,23 @@
 <body>
   <header>
   </header>
-  <main class="container">
+  <main>
     <div data-view="entry-form">
       <div class="row">
-        <div class="column-third">
-          <h5>Code Journal</h5>
+        <div class="head-background">
+          <p class="journal-head">Code Journal</p>
+        </div>
+        <div class="container">
           <h3>New Entry</h3>
           <img class="journal-image" src="images/placeholder-image-square.jpg">
           <form>
-            <label for="title">Title</label>
+            <label for="title" class="input-title">Title</label>
             <input type="text" id="title" class="user-input" required>
-            <label for="img-url">Photo URL</label>
+            <label for="img-url" class="input-title">Photo URL</label>
             <input type="url" id="img-url" class="user-input" required>
-            <label for="notes">Notes</label>
+            <label for="notes" class="input-title">Notes</label>
             <textarea id="notes" class="user-input" required></textarea>
-            <button type="submit">SAVE</button>
+            <button type="submit" class="submit">SAVE</button>
           </form>
         </div>
       </div>
