@@ -14,13 +14,11 @@ function saveEntry(event) {
   newEntry.title = $title.value;
   newEntry.photoURL = $photoURL.value;
   newEntry.notes = $notes.value;
-  newEntry.EntryID = data.nextEntryId;
+  newEntry.entryId = data.nextEntryId;
   data.nextEntryId++;
-  data.entries.push(newEntry);
+  data.entries.unshift(newEntry);
   $img.setAttribute('src', '../images/placeholder-image-square.jpg');
-  $title.value = '';
-  $photoURL.value = '';
-  $notes.value = '';
+  $form.reset();
 }
 
 $photoURL.addEventListener('input', updatePhoto);
