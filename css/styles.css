@@ -1,5 +1,6 @@
 body {
-  font-family: Awesome, sans-serif;
+  font-family: "Open Sans", sans-serif;
+  background-color: rgb(240, 240, 240);
 }
 
 .journal-head {
@@ -14,9 +15,10 @@ body {
   padding: 0.1px;
 }
 
-h3 {
+.entry-header {
   font-size: 1.25em;
   letter-spacing: 0.5px;
+  line-height: 1rem;
 }
 
 .journal-image {
@@ -27,7 +29,7 @@ h3 {
 
 .input-title {
   font-size: 0.75em;
-  font-weight: 600;
+  font-weight: 800;
   letter-spacing: 0.25px;
   display: inline-block;
   padding: 1rem 0 0.25rem;
@@ -36,16 +38,22 @@ h3 {
 .user-input {
   width: 100%;
   height: 4vh;
-  border: 1px solid grey;
+  border: 2px solid rgb(184, 184, 184);
   border-radius: 0.25rem;
 }
 
+.user-input:focus {
+  outline: none;
+  border-color: rgb(86, 43, 129);
+}
+
 #notes {
-  height: 20vh;
+  height: 18vh;
 }
 
 .submit {
   color: white;
+  font-family: "Open Sans", sans-serif;
   background-color: rgb(86, 43, 129);
   font-size: 0.75em;
   letter-spacing: 0.5px;
@@ -62,7 +70,7 @@ h3 {
     font-size: 0.75em;
   }
 
-  h3 {
+  .entry-header {
     font-size: 1.5em;
   }
 
@@ -76,7 +84,7 @@ h3 {
     font-size: 1em;
   }
 
-  .column-half label:first-child {
+  #input-title {
     padding-top: 4rem;
   }
 }
