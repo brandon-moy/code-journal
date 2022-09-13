@@ -20,6 +20,9 @@ function saveEntry(event) {
   data.entries.unshift(newEntry);
   $img.setAttribute('src', '../images/placeholder-image-square.jpg');
   $form.reset();
+
+  var addEntry = createEntryTree(newEntry);
+  $entryList.prepend(addEntry);
 }
 
 function createEntryTree(entry) {
