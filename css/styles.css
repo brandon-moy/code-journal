@@ -11,6 +11,27 @@ body {
 
 .head-background {
   background-color: rgb(86, 43, 129);
+  position: fixed;
+  width: 100%;
+  height: 2.5rem;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+}
+
+.entries-link {
+  text-decoration: none;
+  color: white;
+  font-size: 0.75em;
+  padding-left: 1rem;
+}
+
+.entry-form {
+  padding-top: 2rem;
 }
 
 .entry-header {
