@@ -49,10 +49,17 @@ function createEntryTree(entry) {
   $divRow.appendChild($divColumn2);
   $divColumn2.appendChild($h4);
   $divColumn2.appendChild($p);
+
+  return $li;
+}
+
+function loadData() {
+  for (var i = 0; i < data.entries.length; i++) {
+    var entry = createEntryTree(data.entries[i]);
+    $entryList.appendChild(entry);
+  }
 }
 
 $photoURL.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
-
-// only used to used function and commit work
-$form.addEventListener('click', createEntryTree);
+window.addEventListener('DOMContentLoaded', loadData);
