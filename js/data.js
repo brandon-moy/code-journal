@@ -7,6 +7,12 @@ var data = {
   nextEntryId: 1
 };
 
+var previousDataJSON = localStorage.getItem('journal-data');
+
+if (previousDataJSON !== null) {
+  data = JSON.parse(previousDataJSON);
+}
+
 function beforeUnload(event) {
   var dataJSON = JSON.stringify(data);
   localStorage.setItem('journal-data', dataJSON);
