@@ -44,6 +44,10 @@ nav {
   padding-top: 2rem;
 }
 
+.edit-form {
+  padding-top: 2rem;
+}
+
 .entry-display {
   padding-top: 2rem;
 }
@@ -86,7 +90,7 @@ nav {
   text-align: center;
 }
 
-#notes {
+.notes {
   height: 18vh;
 }
 
@@ -133,6 +137,10 @@ ul {
   }
 
   .entry-form {
+    padding-top: 3rem;
+  }
+
+  .edit-form {
     padding-top: 3rem;
   }
 

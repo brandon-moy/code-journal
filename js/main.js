@@ -8,9 +8,16 @@ var $entryTab = document.querySelector('.entries-link');
 var $newEntryPage = document.querySelector('.new-entry');
 var $viewTab = document.querySelectorAll('.view-tab');
 var $noEntry = document.querySelector('.no-entry');
+var $editPhotoUrl = document.querySelector('.edit-image');
+var $editForm = document.querySelector('.edit-form');
+var $editUrl = document.querySelector('#edit-img-url');
 
 function updatePhoto(event) {
   $img.setAttribute('src', $photoURL.value);
+}
+
+function editPhoto(event) {
+  $editPhotoUrl.setAttribute('src', $editUrl.value);
 }
 
 function saveEntry(event) {
@@ -97,7 +104,43 @@ function changeView(event) {
 }
 
 $photoURL.addEventListener('input', updatePhoto);
+$editUrl.addEventListener('input', editPhoto);
 $form.addEventListener('submit', saveEntry);
 window.addEventListener('DOMContentLoaded', loadData);
 $entryTab.addEventListener('click', changeView);
 $newEntryPage.addEventListener('click', changeView);
+$entryList.addEventListener('click', editEntry);
+$editForm.addEventListener('');
+
+// check if any variables can be brought out of function to be reused
+
+function editEntry(event) {
+  for (var l = 0; l < $viewTab.length; l++) {
+    var $editForm = $viewTab[l].getAttribute('data-view');
+    if ($editForm === 'edit-form') {
+      $viewTab[l].className = 'view-tab';
+    } else {
+      $viewTab[l].className = 'view-tab hidden';
+    }
+  }
+
+  // maybe instead of this just rename the title of the entry form and populate
+  // the information into the form
+  var dataEntryId = event.target.closest('li').getAttribute('data-entry-id');
+  var $editPreview = document.querySelector('.edit-image');
+  var $editTitle = document.querySelector('#edit-title');
+  var $editUrl = document.querySelector('#edit-img-url');
+  var $editNotes = document.querySelector('#edit-notes');
+
+  for (var m = 0; m < data.entries.length; m++) {
+    // dataEntryId is a string and data.entries[m].entryId is a number
+    // need to get them to match up
+    if (data.entries[m].entryId === dataEntryId) {
+      $editPreview.setAttribute('src', data.entries[m].photoURL);
+      $editTitle.value = data.entries[m].title;
+      $editUrl.value = data.entries[m].photoURL;
+      $editNotes.value = data.entries[m].notes;
+    }
+  }
+
+}
