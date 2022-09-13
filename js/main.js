@@ -27,7 +27,7 @@ function saveEntry(event) {
 
   var addEntry = createEntryTree(newEntry);
   $entryList.prepend(addEntry);
-  $noEntry.className = '.no-entry hidden';
+  $noEntry.className = 'no-entry hidden';
 }
 
 function createEntryTree(entry) {
