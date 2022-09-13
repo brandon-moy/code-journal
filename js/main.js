@@ -62,6 +62,14 @@ function createEntryTree(entry) {
 }
 
 function loadData() {
+  for (var j = 0; j < $viewTab.length; j++) {
+    var reloadView = $viewTab[j].getAttribute('data-view');
+    if (reloadView === data.view) {
+      $viewTab[j].className = 'view-tab';
+    } else {
+      $viewTab[j].className = 'view-tab hidden';
+    }
+  }
   for (var i = 0; i < data.entries.length; i++) {
     var entry = createEntryTree(data.entries[i]);
     $entryList.appendChild(entry);
@@ -74,11 +82,12 @@ function loadData() {
 function changeView(event) {
   var $clickId = event.target.getAttribute('id');
 
-  for (var i = 0; i < $viewTab.length; i++) {
-    $viewTab[i].className = 'view-tab hidden';
-    var entryView = $viewTab[i].getAttribute('data-view');
+  for (var k = 0; k < $viewTab.length; k++) {
+    $viewTab[k].className = 'view-tab hidden';
+    var entryView = $viewTab[k].getAttribute('data-view');
     if ($clickId === entryView) {
-      $viewTab[i].className = 'view-tab';
+      $viewTab[k].className = 'view-tab';
+      data.view = entryView;
     }
   }
 }
