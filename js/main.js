@@ -3,7 +3,7 @@ var $title = document.querySelector('#title');
 var $photoURL = document.querySelector('#img-url');
 var $notes = document.querySelector('#notes');
 var $form = document.querySelector('.entry-form');
-// var $entryList = document.querySelector('.entry-list');
+var $entryList = document.querySelector('.entry-list');
 
 function updatePhoto(event) {
   $img.setAttribute('src', $photoURL.value);
@@ -22,23 +22,37 @@ function saveEntry(event) {
   $form.reset();
 }
 
-// function createEntryTree(object) {
-//   var $li = document.createElement('li');
-//   var $divRow = document.createElement('div');
-//   var $divColumn = document.createElement('div');
-//   $divRow.className = 'row';
-//   $divColumn.className = 'column-half';
-//   var $img = document.createElement('img');
-//   $img.className = 'journal-image';
-//   var $h4 = document.createElement('h4');
-//   $h4.className = 'journal-header';
-//   var $p = document.createElement('p');
-//   $p.className = 'journal-text';
-//   $entryList.appendChild($li);
-//   $li.appendChild($divRow);
-//   $divRow.appendChild($divColumn);
-//   $divColumn.appendChild($img);
-// }
+function createEntryTree(entry) {
+  var $li = document.createElement('li');
+  var $divRow = document.createElement('div');
+  var $divColumn = document.createElement('div');
+  var $divColumn2 = document.createElement('div');
+  var $img = document.createElement('img');
+  var $h4 = document.createElement('h4');
+  var $p = document.createElement('p');
+
+  $divRow.className = 'row';
+  $divColumn.className = 'column-half';
+  $divColumn2.className = 'column-half';
+  $img.className = 'journal-image';
+  $h4.className = 'journal-header';
+  $p.className = 'journal-text';
+
+  $img.setAttribute('src', entry.photoURL);
+  $h4.textContent = entry.title;
+  $p.textContent = entry.notes;
+
+  $entryList.appendChild($li);
+  $li.appendChild($divRow);
+  $divRow.appendChild($divColumn);
+  $divColumn.appendChild($img);
+  $divRow.appendChild($divColumn2);
+  $divColumn2.appendChild($h4);
+  $divColumn2.appendChild($p);
+}
 
 $photoURL.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
+
+// only used to used function and commit work
+$form.addEventListener('click', createEntryTree);
