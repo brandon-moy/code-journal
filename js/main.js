@@ -48,6 +48,7 @@ function createEntryTree(entry) {
   $pencil.className = 'fa fa-pencil pencil';
   $p.className = 'journal-text';
 
+  $li.setAttribute('data-entry-id', entry.entryId);
   $img.setAttribute('src', entry.photoURL);
   $h4.textContent = entry.title;
   $p.textContent = entry.notes;
