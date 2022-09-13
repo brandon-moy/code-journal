@@ -37,6 +37,7 @@ function createEntryTree(entry) {
   var $divColumn2 = document.createElement('div');
   var $img = document.createElement('img');
   var $h4 = document.createElement('h4');
+  var $pencil = document.createElement('i');
   var $p = document.createElement('p');
 
   $divRow.className = 'row';
@@ -44,6 +45,7 @@ function createEntryTree(entry) {
   $divColumn2.className = 'column-half';
   $img.className = 'journal-image';
   $h4.className = 'journal-header';
+  $pencil.className = 'fa fa-pencil pencil';
   $p.className = 'journal-text';
 
   $img.setAttribute('src', entry.photoURL);
@@ -56,6 +58,7 @@ function createEntryTree(entry) {
   $divColumn.appendChild($img);
   $divRow.appendChild($divColumn2);
   $divColumn2.appendChild($h4);
+  $h4.appendChild($pencil);
   $divColumn2.appendChild($p);
 
   return $li;

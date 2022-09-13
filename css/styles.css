@@ -108,6 +108,11 @@ ul {
   padding: 0;
 }
 
+.pencil {
+  color: rgb(86, 43, 129);
+  float: right;
+}
+
 @media screen and (min-width: 768px) {
   .head-background {
     height: 3rem;
