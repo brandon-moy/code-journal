@@ -13,6 +13,14 @@
   flex-wrap: wrap;
 }
 
+.space-between {
+  justify-content: space-between;
+}
+
+.center {
+  align-items: center;
+}
+
 .column-full,
 .column-half {
   width: 100%;

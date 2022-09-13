@@ -30,7 +30,21 @@ nav {
   padding-left: 1rem;
 }
 
+.new-entry {
+  text-decoration: none;
+  color: white;
+  background-color: rgb(86, 43, 129);
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 0.75em;
+  padding: 0.25rem 0.5rem;
+}
+
 .entry-form {
+  padding-top: 2rem;
+}
+
+.entry-display {
   padding-top: 2rem;
 }
 
@@ -67,6 +81,11 @@ nav {
   border-color: rgb(86, 43, 129);
 }
 
+.no-entry {
+  padding-top: 2rem;
+  text-align: center;
+}
+
 #notes {
   height: 18vh;
 }
@@ -96,6 +115,7 @@ ul {
 
   .journal-head {
     font-size: 1em;
+    padding-left: 0.75rem;
   }
 
   .entries-link {
@@ -103,12 +123,21 @@ ul {
     padding-left: 1.5rem;
   }
 
+  .new-entry {
+    font-size: 1em;
+  }
+
   .entry-form {
+    padding-top: 3rem;
+  }
+
+  .entry-display {
     padding-top: 3rem;
   }
 
   .entry-header {
     font-size: 1.5em;
+    padding-left: 0.75rem;
   }
 
   .journal-image {
@@ -122,7 +151,7 @@ ul {
   }
 
   #input-title {
-    padding-top: 4rem;
+    padding-top: 0;
   }
 
   li {

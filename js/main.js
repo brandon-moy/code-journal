@@ -4,6 +4,10 @@ var $photoURL = document.querySelector('#img-url');
 var $notes = document.querySelector('#notes');
 var $form = document.querySelector('.entry-form');
 var $entryList = document.querySelector('.entry-list');
+var $entryTab = document.querySelector('.entries-link');
+var $newEntryPage = document.querySelector('.new-entry');
+var $viewTab = document.querySelectorAll('.view-tab');
+var $noEntry = document.querySelector('.no-entry');
 
 function updatePhoto(event) {
   $img.setAttribute('src', $photoURL.value);
@@ -23,6 +27,7 @@ function saveEntry(event) {
 
   var addEntry = createEntryTree(newEntry);
   $entryList.prepend(addEntry);
+  $noEntry.className = '.no-entry hidden';
 }
 
 function createEntryTree(entry) {
@@ -61,8 +66,25 @@ function loadData() {
     var entry = createEntryTree(data.entries[i]);
     $entryList.appendChild(entry);
   }
+  if (data.entries.length > 0) {
+    $noEntry.className = 'no-entry hidden';
+  }
+}
+
+function changeView(event) {
+  var $clickId = event.target.getAttribute('id');
+
+  for (var i = 0; i < $viewTab.length; i++) {
+    $viewTab[i].className = 'view-tab hidden';
+    var entryView = $viewTab[i].getAttribute('data-view');
+    if ($clickId === entryView) {
+      $viewTab[i].className = 'view-tab';
+    }
+  }
 }
 
 $photoURL.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
 window.addEventListener('DOMContentLoaded', loadData);
+$entryTab.addEventListener('click', changeView);
+$newEntryPage.addEventListener('click', changeView);
