@@ -44,6 +44,10 @@ nav {
   padding-top: 2rem;
 }
 
+.edit-form {
+  padding-top: 2rem;
+}
+
 .entry-display {
   padding-top: 2rem;
 }
@@ -86,7 +90,7 @@ nav {
   text-align: center;
 }
 
-#notes {
+.notes {
   height: 18vh;
 }
 
@@ -106,6 +110,11 @@ nav {
 ul {
   list-style-type: none;
   padding: 0;
+}
+
+.pencil {
+  color: rgb(86, 43, 129);
+  float: right;
 }
 
 @media screen and (min-width: 768px) {
@@ -128,6 +137,10 @@ ul {
   }
 
   .entry-form {
+    padding-top: 3rem;
+  }
+
+  .edit-form {
     padding-top: 3rem;
   }
 

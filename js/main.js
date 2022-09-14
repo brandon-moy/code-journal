@@ -8,6 +8,7 @@ var $entryTab = document.querySelector('.entries-link');
 var $newEntryPage = document.querySelector('.new-entry');
 var $viewTab = document.querySelectorAll('.view-tab');
 var $noEntry = document.querySelector('.no-entry');
+var $entryHeader = document.querySelector('.entry-header');
 
 function updatePhoto(event) {
   $img.setAttribute('src', $photoURL.value);
@@ -15,19 +16,42 @@ function updatePhoto(event) {
 
 function saveEntry(event) {
   event.preventDefault();
-  var newEntry = {};
-  newEntry.title = $title.value;
-  newEntry.photoURL = $photoURL.value;
-  newEntry.notes = $notes.value;
-  newEntry.entryId = data.nextEntryId;
-  data.nextEntryId++;
-  data.entries.unshift(newEntry);
-  $img.setAttribute('src', '../images/placeholder-image-square.jpg');
-  $form.reset();
+  if (data.editing === null) {
+    var newEntry = {};
+    newEntry.title = $title.value;
+    newEntry.photoURL = $photoURL.value;
+    newEntry.notes = $notes.value;
+    newEntry.entryId = data.nextEntryId;
+    data.nextEntryId++;
+    data.entries.unshift(newEntry);
+    $img.setAttribute('src', '../images/placeholder-image-square.jpg');
+    $form.reset();
 
-  var addEntry = createEntryTree(newEntry);
-  $entryList.prepend(addEntry);
-  $noEntry.className = 'no-entry hidden';
+    var addEntry = createEntryTree(newEntry);
+    $entryList.prepend(addEntry);
+    $noEntry.className = 'no-entry hidden';
+  } else {
+    data.editing.title = $title.value;
+    data.editing.photoURL = $photoURL.value;
+    data.editing.notes = $notes.value;
+    var editEntry = createEntryTree(data.editing);
+    var $lis = document.querySelectorAll('li');
+    for (var o = 0; o < $lis.length; o++) {
+      var $lisId = Number($lis[o].getAttribute('data-entry-id'));
+      if ($lisId === data.editing.entryId) {
+        $lis[o].replaceWith(editEntry);
+      }
+    }
+    data.editing = null;
+    for (var p = 0; p < $viewTab.length; p++) {
+      var viewCheck = $viewTab[p].getAttribute('data-view');
+      if (viewCheck === 'entries') {
+        $viewTab[p].className = 'view-tab';
+      } else {
+        $viewTab[p].className = 'view-tab hidden';
+      }
+    }
+  }
 }
 
 function createEntryTree(entry) {
@@ -37,6 +61,7 @@ function createEntryTree(entry) {
   var $divColumn2 = document.createElement('div');
   var $img = document.createElement('img');
   var $h4 = document.createElement('h4');
+  var $pencil = document.createElement('i');
   var $p = document.createElement('p');
 
   $divRow.className = 'row';
@@ -44,8 +69,10 @@ function createEntryTree(entry) {
   $divColumn2.className = 'column-half';
   $img.className = 'journal-image';
   $h4.className = 'journal-header';
+  $pencil.className = 'fa fa-pencil pencil';
   $p.className = 'journal-text';
 
+  $li.setAttribute('data-entry-id', entry.entryId);
   $img.setAttribute('src', entry.photoURL);
   $h4.textContent = entry.title;
   $p.textContent = entry.notes;
@@ -56,6 +83,7 @@ function createEntryTree(entry) {
   $divColumn.appendChild($img);
   $divRow.appendChild($divColumn2);
   $divColumn2.appendChild($h4);
+  $h4.appendChild($pencil);
   $divColumn2.appendChild($p);
 
   return $li;
@@ -92,8 +120,33 @@ function changeView(event) {
   }
 }
 
+function editEntry(event) {
+  if (event.target.tagName === 'I') {
+    for (var l = 0; l < $viewTab.length; l++) {
+      var $editForm = $viewTab[l].getAttribute('data-view');
+      if ($editForm === 'entry-form') {
+        $viewTab[l].className = 'view-tab';
+        $entryHeader.textContent = 'Edit Entry';
+        var dataEntryId = Number(event.target.closest('li').getAttribute('data-entry-id'));
+        for (var m = 0; m < data.entries.length; m++) {
+          if (data.entries[m].entryId === dataEntryId) {
+            data.editing = data.entries[m];
+          }
+        }
+        $title.value = data.editing.title;
+        $photoURL.value = data.editing.photoURL;
+        $img.setAttribute('src', data.editing.photoURL);
+        $notes.value = data.editing.notes;
+      } else {
+        $viewTab[l].className = 'view-tab hidden';
+      }
+    }
+  }
+}
+
 $photoURL.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
 window.addEventListener('DOMContentLoaded', loadData);
 $entryTab.addEventListener('click', changeView);
 $newEntryPage.addEventListener('click', changeView);
+$entryList.addEventListener('click', editEntry);
