@@ -111,7 +111,17 @@ function editEntry(event) {
       if ($editForm === 'entry-form') {
         $viewTab[l].className = 'view-tab';
         $entryHeader.textContent = 'Edit Entry';
-      } else {
+        var dataEntryId = event.target.closest('li').getAttribute('data-entry-id');
+        for (var m = 0; m < data.entries.length; m++) {
+          if (data.entries[m].entryId === dataEntryId) {
+            data.editing = data.entries[m];
+          }
+        }
+        //   $title.value = data.editing.title;
+        //   $photoURL.value = data.editing.photoURL;
+        //   $img.setAttribute('src', data.editing.photoURL);
+        //   $notes.value = data.editing.notes;
+        // } else {
         $viewTab[l].className = 'view-tab hidden';
       }
     }
@@ -126,16 +136,13 @@ function editEntry(event) {
 
 //   // maybe instead of this just rename the title of the entry form and populate
 //   // the information into the form
-//   var dataEntryId = event.target.closest('li').getAttribute('data-entry-id');
 //   var $editPreview = document.querySelector('.edit-image');
 //   var $editTitle = document.querySelector('#edit-title');
 //   var $editUrl = document.querySelector('#edit-img-url');
 //   var $editNotes = document.querySelector('#edit-notes');
 
-//   for (var m = 0; m < data.entries.length; m++) {
 //     // dataEntryId is a string and data.entries[m].entryId is a number
 //     // need to get them to match up
-//     if (data.entries[m].entryId === dataEntryId) {
 //       $editPreview.setAttribute('src', data.entries[m].photoURL);
 //       $editTitle.value = data.entries[m].title;
 //       $editUrl.value = data.entries[m].photoURL;
