@@ -34,6 +34,23 @@ function saveEntry(event) {
     data.editing.title = $title.value;
     data.editing.photoURL = $photoURL.value;
     data.editing.notes = $notes.value;
+    var editEntry = createEntryTree(data.editing);
+    var $lis = document.querySelectorAll('li');
+    for (var o = 0; o < $lis.length; o++) {
+      var $lisId = Number($lis[o].getAttribute('data-entry-id'));
+      if ($lisId === data.editing.entryId) {
+        $lis[o].replaceWith(editEntry);
+      }
+    }
+    data.editing = null;
+    for (var p = 0; p < $viewTab.length; p++) {
+      var viewCheck = $viewTab[p].getAttribute('data-view');
+      if (viewCheck === 'entries') {
+        $viewTab[p].className = 'view-tab';
+      } else {
+        $viewTab[p].className = 'view-tab hidden';
+      }
+    }
   }
 }
 
