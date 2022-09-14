@@ -115,6 +115,7 @@ ul {
 .pencil {
   color: rgb(86, 43, 129);
   float: right;
+  border: none;
 }
 
 @media screen and (min-width: 768px) {
