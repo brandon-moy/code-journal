@@ -11,7 +11,6 @@ body {
 
 .head-background {
   background-color: rgb(86, 43, 129);
-  position: fixed;
   width: 100%;
   height: 2.5rem;
 }
@@ -19,7 +18,6 @@ body {
 nav {
   display: flex;
   align-items: center;
-  position: fixed;
   width: 100%;
 }
 
@@ -38,18 +36,6 @@ nav {
   border-radius: 0.25rem;
   font-size: 0.75em;
   padding: 0.25rem 0.5rem;
-}
-
-.entry-form {
-  padding-top: 2rem;
-}
-
-.edit-form {
-  padding-top: 2rem;
-}
-
-.entry-display {
-  padding-top: 2rem;
 }
 
 .entry-header {
@@ -125,6 +111,48 @@ ul {
   float: right;
 }
 
+.modal-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  opacity: 0.75;
+  border: none;
+  top: 0;
+}
+
+.modal-box {
+  background-color: white;
+  color: black;
+  width: 80%;
+  height: 20vh;
+  border-radius: 0.25rem;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.modal-button {
+  margin: 1rem;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-style: bold;
+}
+
+.cancel {
+  background-color: grey;
+}
+
+.confirm {
+  background-color: red;
+  color: white;
+}
+
 @media screen and (min-width: 768px) {
   .head-background {
     height: 3rem;
@@ -142,18 +170,6 @@ ul {
 
   .new-entry {
     font-size: 1em;
-  }
-
-  .entry-form {
-    padding-top: 3rem;
-  }
-
-  .edit-form {
-    padding-top: 3rem;
-  }
-
-  .entry-display {
-    padding-top: 3rem;
   }
 
   .entry-header {
