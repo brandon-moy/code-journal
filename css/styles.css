@@ -94,6 +94,14 @@ nav {
   height: 18vh;
 }
 
+.delete {
+  color: red;
+  font-family: "Open Sans", sans-serif;
+  border: none;
+  text-decoration: underline;
+  padding-top: 0.7rem;
+}
+
 .submit {
   color: white;
   font-family: "Open Sans", sans-serif;

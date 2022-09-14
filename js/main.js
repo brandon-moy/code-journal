@@ -9,6 +9,7 @@ var $newEntryPage = document.querySelector('.new-entry');
 var $viewTab = document.querySelectorAll('.view-tab');
 var $noEntry = document.querySelector('.no-entry');
 var $entryHeader = document.querySelector('.entry-header');
+var $delete = document.querySelector('.delete');
 
 function updatePhoto(event) {
   $img.setAttribute('src', $photoURL.value);
@@ -43,6 +44,7 @@ function saveEntry(event) {
       }
     }
     data.editing = null;
+    $delete.className = 'hidden delete';
     for (var p = 0; p < $viewTab.length; p++) {
       var viewCheck = $viewTab[p].getAttribute('data-view');
       if (viewCheck === 'entries') {
@@ -109,6 +111,7 @@ function loadData() {
 
 function changeView(event) {
   var $clickId = event.target.getAttribute('id');
+  $delete.className = 'hidden delete';
 
   for (var k = 0; k < $viewTab.length; k++) {
     $viewTab[k].className = 'view-tab hidden';
@@ -137,6 +140,7 @@ function editEntry(event) {
         $photoURL.value = data.editing.photoURL;
         $img.setAttribute('src', data.editing.photoURL);
         $notes.value = data.editing.notes;
+        $delete.className = 'delete';
       } else {
         $viewTab[l].className = 'view-tab hidden';
       }
