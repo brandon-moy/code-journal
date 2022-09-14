@@ -20,11 +20,22 @@
   <header>
   </header>
   <main>
+    <div class="modal-background hidden">
+      <div class="modal-box">
+        <div class="column-full">
+          <h5>Are you sure you want to delete this entry?</h5>
+        </div>
+        <div class="column-full space-between">
+          <button class="modal-button cancel">CANCEL</button>
+          <button class="modal-button confirm">CONFIRM</button>
+        </div>
+      </div>
+    </div>
     <div class="head-background">
       <div class="container">
         <nav>
           <p class="journal-head">Code Journal</p>
-          <a href="#entries" class="entries-link" id="entries">Entries</a>
+          <a href="#" class="entries-link" id="entries">Entries</a>
         </nav>
       </div>
     </div>
@@ -63,13 +74,6 @@
         </p>
         <ul class="entry-list">
         </ul>
-      </div>
-    </div>
-    <div class="modal-background">
-      <div class="modal-box">
-        <h5>Are you sure you want to delete this entry?</h5>
-        <button class="modal-button cancel">CANCEL</button>
-        <button class="modal-button confirm">CONFIRM</button>
       </div>
     </div>
   </main>

@@ -10,6 +10,9 @@ var $viewTab = document.querySelectorAll('.view-tab');
 var $noEntry = document.querySelector('.no-entry');
 var $entryHeader = document.querySelector('.entry-header');
 var $delete = document.querySelector('.delete');
+var $deleteModal = document.querySelector('.modal-background');
+var $cancel = document.querySelector('.cancel');
+var $confirm = document.querySelector('.confirm');
 
 function updatePhoto(event) {
   $img.setAttribute('src', $photoURL.value);
@@ -61,7 +64,7 @@ function createEntryTree(entry) {
   var $divRow = document.createElement('div');
   var $divColumn = document.createElement('div');
   var $divColumn2 = document.createElement('div');
-  var $img = document.createElement('img');
+  var $newImg = document.createElement('img');
   var $h4 = document.createElement('h4');
   var $pencil = document.createElement('i');
   var $p = document.createElement('p');
@@ -69,20 +72,20 @@ function createEntryTree(entry) {
   $divRow.className = 'row';
   $divColumn.className = 'column-half';
   $divColumn2.className = 'column-half';
-  $img.className = 'journal-image';
+  $newImg.className = 'journal-image';
   $h4.className = 'journal-header';
   $pencil.className = 'fa fa-pencil pencil';
   $p.className = 'journal-text';
 
   $li.setAttribute('data-entry-id', entry.entryId);
-  $img.setAttribute('src', entry.photoURL);
+  $newImg.setAttribute('src', entry.photoURL);
   $h4.textContent = entry.title;
   $p.textContent = entry.notes;
 
   $entryList.appendChild($li);
   $li.appendChild($divRow);
   $divRow.appendChild($divColumn);
-  $divColumn.appendChild($img);
+  $divColumn.appendChild($newImg);
   $divRow.appendChild($divColumn2);
   $divColumn2.appendChild($h4);
   $h4.appendChild($pencil);
@@ -112,6 +115,9 @@ function loadData() {
 function changeView(event) {
   var $clickId = event.target.getAttribute('id');
   $delete.className = 'hidden delete';
+  $form.reset();
+  $img.setAttribute('src', '../images/placeholder-image-square.jpg');
+  $entryHeader.textContent = 'New Entry';
 
   for (var k = 0; k < $viewTab.length; k++) {
     $viewTab[k].className = 'view-tab hidden';
@@ -148,9 +154,24 @@ function editEntry(event) {
   }
 }
 
+function confirmDelete(event) {
+  $deleteModal.className = 'modal-background';
+}
+
+function cancel(event) {
+  $deleteModal.className = 'modal-background hidden';
+}
+
+function confirm(event) {
+  $deleteModal.className = 'modal-background hidden';
+}
+
 $photoURL.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
 window.addEventListener('DOMContentLoaded', loadData);
 $entryTab.addEventListener('click', changeView);
 $newEntryPage.addEventListener('click', changeView);
 $entryList.addEventListener('click', editEntry);
+$delete.addEventListener('click', confirmDelete);
+$cancel.addEventListener('click', cancel);
+$confirm.addEventListener('click', confirm);
