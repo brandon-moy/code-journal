@@ -154,16 +154,44 @@ function editEntry(event) {
   }
 }
 
-function confirmDelete(event) {
+function deleteCheck(event) {
   $deleteModal.className = 'modal-background';
 }
 
-function cancel(event) {
+function cancelDelete(event) {
   $deleteModal.className = 'modal-background hidden';
 }
 
-function confirm(event) {
+function confirmDelete(event) {
+  for (var q = 0; q < data.entries.length; q++) {
+    if (data.entries[q] === data.editing) {
+      data.entries.splice(q, 1);
+    }
+  }
+
+  while ($entryList.firstChild) {
+    $entryList.removeChild($entryList.firstChild);
+  }
+
+  for (var r = 0; r < data.entries.length; r++) {
+    var $entry = createEntryTree(data.entries[r]);
+    $entryList.appendChild($entry);
+  }
+
+  if (data.entries.length > 0) {
+    $noEntry.className = 'no-entry hidden';
+  }
+
   $deleteModal.className = 'modal-background hidden';
+
+  for (var s = 0; s < $viewTab.length; s++) {
+    var $changeForm = $viewTab[s].getAttribute('data-view');
+    if ($changeForm === 'entries') {
+      $viewTab[s].className = 'view-tab';
+    } else {
+      $viewTab[s].className = 'view-tab hidden';
+    }
+  }
 }
 
 $photoURL.addEventListener('input', updatePhoto);
@@ -172,6 +200,6 @@ window.addEventListener('DOMContentLoaded', loadData);
 $entryTab.addEventListener('click', changeView);
 $newEntryPage.addEventListener('click', changeView);
 $entryList.addEventListener('click', editEntry);
-$delete.addEventListener('click', confirmDelete);
-$cancel.addEventListener('click', cancel);
-$confirm.addEventListener('click', confirm);
+$delete.addEventListener('click', deleteCheck);
+$cancel.addEventListener('click', cancelDelete);
+$confirm.addEventListener('click', confirmDelete);
