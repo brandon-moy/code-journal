@@ -16,19 +16,25 @@ function updatePhoto(event) {
 
 function saveEntry(event) {
   event.preventDefault();
-  var newEntry = {};
-  newEntry.title = $title.value;
-  newEntry.photoURL = $photoURL.value;
-  newEntry.notes = $notes.value;
-  newEntry.entryId = data.nextEntryId;
-  data.nextEntryId++;
-  data.entries.unshift(newEntry);
-  $img.setAttribute('src', '../images/placeholder-image-square.jpg');
-  $form.reset();
+  if (data.editing === null) {
+    var newEntry = {};
+    newEntry.title = $title.value;
+    newEntry.photoURL = $photoURL.value;
+    newEntry.notes = $notes.value;
+    newEntry.entryId = data.nextEntryId;
+    data.nextEntryId++;
+    data.entries.unshift(newEntry);
+    $img.setAttribute('src', '../images/placeholder-image-square.jpg');
+    $form.reset();
 
-  var addEntry = createEntryTree(newEntry);
-  $entryList.prepend(addEntry);
-  $noEntry.className = 'no-entry hidden';
+    var addEntry = createEntryTree(newEntry);
+    $entryList.prepend(addEntry);
+    $noEntry.className = 'no-entry hidden';
+  } else {
+    data.editing.title = $title.value;
+    data.editing.photoURL = $photoURL.value;
+    data.editing.notes = $notes.value;
+  }
 }
 
 function createEntryTree(entry) {
@@ -97,13 +103,6 @@ function changeView(event) {
   }
 }
 
-$photoURL.addEventListener('input', updatePhoto);
-$form.addEventListener('submit', saveEntry);
-window.addEventListener('DOMContentLoaded', loadData);
-$entryTab.addEventListener('click', changeView);
-$newEntryPage.addEventListener('click', changeView);
-$entryList.addEventListener('click', editEntry);
-
 function editEntry(event) {
   if (event.target.tagName === 'BUTTON') {
     for (var l = 0; l < $viewTab.length; l++) {
@@ -111,7 +110,7 @@ function editEntry(event) {
       if ($editForm === 'entry-form') {
         $viewTab[l].className = 'view-tab';
         $entryHeader.textContent = 'Edit Entry';
-        var dataEntryId = event.target.closest('li').getAttribute('data-entry-id');
+        var dataEntryId = Number(event.target.closest('li').getAttribute('data-entry-id'));
         for (var m = 0; m < data.entries.length; m++) {
           if (data.entries[m].entryId === dataEntryId) {
             data.editing = data.entries[m];
@@ -127,3 +126,10 @@ function editEntry(event) {
     }
   }
 }
+
+$photoURL.addEventListener('input', updatePhoto);
+$form.addEventListener('submit', saveEntry);
+window.addEventListener('DOMContentLoaded', loadData);
+$entryTab.addEventListener('click', changeView);
+$newEntryPage.addEventListener('click', changeView);
+$entryList.addEventListener('click', editEntry);
