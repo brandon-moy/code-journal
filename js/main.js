@@ -180,6 +180,8 @@ function confirmDelete(event) {
 
   if (data.entries.length > 0) {
     $noEntry.className = 'no-entry hidden';
+  } else {
+    $noEntry.className = 'no-entry';
   }
 
   $deleteModal.className = 'modal-background hidden';
