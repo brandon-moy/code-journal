@@ -61,7 +61,7 @@ function createEntryTree(entry) {
   var $divColumn2 = document.createElement('div');
   var $img = document.createElement('img');
   var $h4 = document.createElement('h4');
-  var $pencil = document.createElement('button');
+  var $pencil = document.createElement('i');
   var $p = document.createElement('p');
 
   $divRow.className = 'row';
@@ -121,7 +121,7 @@ function changeView(event) {
 }
 
 function editEntry(event) {
-  if (event.target.tagName === 'BUTTON') {
+  if (event.target.tagName === 'I') {
     for (var l = 0; l < $viewTab.length; l++) {
       var $editForm = $viewTab[l].getAttribute('data-view');
       if ($editForm === 'entry-form') {
