@@ -117,37 +117,13 @@ function editEntry(event) {
             data.editing = data.entries[m];
           }
         }
-        //   $title.value = data.editing.title;
-        //   $photoURL.value = data.editing.photoURL;
-        //   $img.setAttribute('src', data.editing.photoURL);
-        //   $notes.value = data.editing.notes;
-        // } else {
+        $title.value = data.editing.title;
+        $photoURL.value = data.editing.photoURL;
+        $img.setAttribute('src', data.editing.photoURL);
+        $notes.value = data.editing.notes;
+      } else {
         $viewTab[l].className = 'view-tab hidden';
       }
     }
   }
 }
-
-// check if any variables can be brought out of function to be reused
-
-// function editEntry(event) {
-//   }
-// }
-
-//   // maybe instead of this just rename the title of the entry form and populate
-//   // the information into the form
-//   var $editPreview = document.querySelector('.edit-image');
-//   var $editTitle = document.querySelector('#edit-title');
-//   var $editUrl = document.querySelector('#edit-img-url');
-//   var $editNotes = document.querySelector('#edit-notes');
-
-//     // dataEntryId is a string and data.entries[m].entryId is a number
-//     // need to get them to match up
-//       $editPreview.setAttribute('src', data.entries[m].photoURL);
-//       $editTitle.value = data.entries[m].title;
-//       $editUrl.value = data.entries[m].photoURL;
-//       $editNotes.value = data.entries[m].notes;
-//     }
-//   }
-
-// }
