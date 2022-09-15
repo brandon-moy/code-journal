@@ -68,6 +68,7 @@ function createEntryTree(entry) {
   var $divColumn2 = document.createElement('div');
   var $newImg = document.createElement('img');
   var $h4 = document.createElement('h4');
+  var $star = document.createElement('i');
   var $pencil = document.createElement('i');
   var $p = document.createElement('p');
 
@@ -76,6 +77,7 @@ function createEntryTree(entry) {
   $divColumn2.className = 'column-half';
   $newImg.className = 'journal-image';
   $h4.className = 'journal-header';
+  $star.className = 'fa fa-star star unfavourite';
   $pencil.className = 'fa fa-pencil pencil';
   $p.className = 'journal-text';
 
@@ -91,6 +93,7 @@ function createEntryTree(entry) {
   $divRow.appendChild($divColumn2);
   $divColumn2.appendChild($h4);
   $h4.appendChild($pencil);
+  $h4.appendChild($star);
   $divColumn2.appendChild($p);
 
   return $li;
@@ -131,6 +134,14 @@ function changeView(event) {
   }
 }
 
+function checkIcon(event) {
+  if (event.target.className === 'fa fa-pencil pencil') {
+    editEntry(event);
+  } else if (event.target.className === 'fa fa-star star unfavourite' || event.target.className === 'fa fa-star star favourite') {
+    favourite(event);
+  }
+}
+
 function editEntry(event) {
   if (event.target.tagName === 'I') {
     for (var l = 0; l < $viewTab.length; l++) {
@@ -153,6 +164,14 @@ function editEntry(event) {
         $viewTab[l].className = 'view-tab hidden';
       }
     }
+  }
+}
+
+function favourite(event) {
+  if (event.target.className === 'fa fa-star star unfavourite') {
+    event.target.className = 'fa fa-star star favourite';
+  } else {
+    event.target.className = 'fa fa-star star unfavourite';
   }
 }
 
@@ -236,7 +255,7 @@ $form.addEventListener('submit', saveEntry);
 window.addEventListener('DOMContentLoaded', loadData);
 $entryTab.addEventListener('click', changeView);
 $newEntryPage.addEventListener('click', changeView);
-$entryList.addEventListener('click', editEntry);
+$entryList.addEventListener('click', checkIcon);
 $delete.addEventListener('click', deleteCheck);
 $cancel.addEventListener('click', cancelDelete);
 $confirm.addEventListener('click', confirmDelete);

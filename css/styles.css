@@ -111,6 +111,12 @@ ul {
   float: right;
 }
 
+.star {
+  float: right;
+  padding-right: 1rem;
+  color: rgb(86, 43, 129);
+}
+
 .modal-background {
   display: flex;
   justify-content: center;
