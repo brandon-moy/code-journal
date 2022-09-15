@@ -15,6 +15,8 @@ var $cancel = document.querySelector('.cancel');
 var $confirm = document.querySelector('.confirm');
 var $searchBar = document.querySelector('.search-bar');
 var $searchIcon = document.querySelector('.search-icon');
+var $imgModal = document.querySelector('.img-modal-background');
+var $enlargeImg = document.querySelector('.modal-image');
 
 function updatePhoto(event) {
   $img.setAttribute('src', $photoURL.value);
@@ -144,6 +146,8 @@ function checkIcon(event) {
     editEntry(event);
   } else if (event.target.className === 'fa fa-star star unfavourite' || event.target.className === 'fa fa-star star favourite') {
     favourite(event);
+  } else if (event.target.tagName === 'IMG') {
+    enlargeImage(event);
   }
 }
 
@@ -187,6 +191,13 @@ function favourite(event) {
       }
     }
   }
+}
+
+function enlargeImage(event) {
+  $imgModal.className = 'img-modal-background';
+  var $img = event.target.getAttribute('src');
+  $enlargeImg.setAttribute('src', $img);
+
 }
 
 function deleteCheck(event) {
