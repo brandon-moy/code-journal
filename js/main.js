@@ -206,6 +206,7 @@ function showSearchBar(event) {
   } else {
     visible = true;
     $searchBar.className = 'search-bar';
+    $searchBar.focus();
   }
 }
 
@@ -223,6 +224,13 @@ function searchEntry(event) {
   }
 }
 
+function hideSearchBar(event) {
+  if ($searchBar.value === '') {
+    visible = false;
+    $searchBar.className = 'search-bar hidden';
+  }
+}
+
 $photoURL.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
 window.addEventListener('DOMContentLoaded', loadData);
@@ -235,10 +243,3 @@ $confirm.addEventListener('click', confirmDelete);
 $searchBar.addEventListener('input', searchEntry);
 $searchIcon.addEventListener('click', showSearchBar);
 $searchBar.addEventListener('blur', hideSearchBar);
-
-function hideSearchBar(event) {
-  if ($searchBar.value === '') {
-    visible = false;
-    $searchBar.className = 'search-bar hidden';
-  }
-}
