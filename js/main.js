@@ -13,6 +13,7 @@ var $delete = document.querySelector('.delete');
 var $deleteModal = document.querySelector('.modal-background');
 var $cancel = document.querySelector('.cancel');
 var $confirm = document.querySelector('.confirm');
+// var $searchBar = document.querySelector('.search-bar');
 
 function updatePhoto(event) {
   $img.setAttribute('src', $photoURL.value);
@@ -204,3 +205,8 @@ $entryList.addEventListener('click', editEntry);
 $delete.addEventListener('click', deleteCheck);
 $cancel.addEventListener('click', cancelDelete);
 $confirm.addEventListener('click', confirmDelete);
+// $searchBar.addEventListener('input', test);
+
+// function test(event) {
+
+// }
