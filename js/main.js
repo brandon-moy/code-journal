@@ -13,7 +13,7 @@ var $delete = document.querySelector('.delete');
 var $deleteModal = document.querySelector('.modal-background');
 var $cancel = document.querySelector('.cancel');
 var $confirm = document.querySelector('.confirm');
-// var $searchBar = document.querySelector('.search-bar');
+var $searchBar = document.querySelector('.search-bar');
 
 function updatePhoto(event) {
   $img.setAttribute('src', $photoURL.value);
@@ -205,8 +205,18 @@ $entryList.addEventListener('click', editEntry);
 $delete.addEventListener('click', deleteCheck);
 $cancel.addEventListener('click', cancelDelete);
 $confirm.addEventListener('click', confirmDelete);
-// $searchBar.addEventListener('input', test);
+$searchBar.addEventListener('input', searchEntry);
 
-// function test(event) {
-
-// }
+function searchEntry(event) {
+  var search = $searchBar.value.toUpperCase();
+  var $lis = document.querySelectorAll('li');
+  for (var t = 0; t < $lis.length; t++) {
+    var $h4 = $lis[t].querySelector('.journal-header');
+    var $h4Check = $h4.textContent.toUpperCase();
+    if ($h4Check.includes(search)) {
+      $lis[t].className = '';
+    } else {
+      $lis[t].className = 'hidden';
+    }
+  }
+}
