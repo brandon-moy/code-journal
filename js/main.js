@@ -197,20 +197,16 @@ function confirmDelete(event) {
   }
 }
 
-$photoURL.addEventListener('input', updatePhoto);
-$form.addEventListener('submit', saveEntry);
-window.addEventListener('DOMContentLoaded', loadData);
-$entryTab.addEventListener('click', changeView);
-$newEntryPage.addEventListener('click', changeView);
-$entryList.addEventListener('click', editEntry);
-$delete.addEventListener('click', deleteCheck);
-$cancel.addEventListener('click', cancelDelete);
-$confirm.addEventListener('click', confirmDelete);
-$searchBar.addEventListener('input', searchEntry);
-$searchIcon.addEventListener('click', test);
+var visible = false;
 
-function test(event) {
-
+function showSearchBar(event) {
+  if (visible) {
+    visible = false;
+    $searchBar.className = 'search-bar hidden';
+  } else {
+    visible = true;
+    $searchBar.className = 'search-bar';
+  }
 }
 
 function searchEntry(event) {
@@ -224,5 +220,25 @@ function searchEntry(event) {
     } else {
       $lis[t].className = 'hidden';
     }
+  }
+}
+
+$photoURL.addEventListener('input', updatePhoto);
+$form.addEventListener('submit', saveEntry);
+window.addEventListener('DOMContentLoaded', loadData);
+$entryTab.addEventListener('click', changeView);
+$newEntryPage.addEventListener('click', changeView);
+$entryList.addEventListener('click', editEntry);
+$delete.addEventListener('click', deleteCheck);
+$cancel.addEventListener('click', cancelDelete);
+$confirm.addEventListener('click', confirmDelete);
+$searchBar.addEventListener('input', searchEntry);
+$searchIcon.addEventListener('click', showSearchBar);
+$searchBar.addEventListener('blur', hideSearchBar);
+
+function hideSearchBar(event) {
+  if ($searchBar.value === '') {
+    visible = false;
+    $searchBar.className = 'search-bar hidden';
   }
 }

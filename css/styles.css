@@ -154,6 +154,21 @@ ul {
   color: white;
 }
 
+.search-icon {
+  margin-right: 0.25rem;
+}
+
+.search-bar {
+  border-radius: 0.25rem;
+  margin-right: 0.25rem;
+  border: 2px solid rgb(184, 184, 184);
+  outline: none;
+}
+
+.search-bar:focus {
+  border-color: rgb(86, 43, 129);
+}
+
 @media screen and (min-width: 768px) {
   .head-background {
     height: 3rem;
@@ -198,5 +213,14 @@ ul {
 
   .modal-box {
     width: 25rem;
+  }
+
+  .search-icon {
+    margin-right: 0.5rem;
+  }
+
+  .search-bar {
+    margin-right: 0.5rem;
+    height: 2rem;
   }
 }
