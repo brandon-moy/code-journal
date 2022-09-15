@@ -169,14 +169,15 @@ function confirmDelete(event) {
     }
   }
 
-  while ($entryList.firstChild) {
-    $entryList.removeChild($entryList.firstChild);
+  // This needs to be worked on (below)
+  var $lis = document.querySelectorAll('li');
+  for (var r = 0; r < $lis.length; r++) {
+    var $lisId = Number($lis[r].getAttribute('data-entry-id'));
+    if ($lisId[r] === data.editing.entryId) {
+      $lis[r].remove();
+    }
   }
-
-  for (var r = 0; r < data.entries.length; r++) {
-    var $entry = createEntryTree(data.entries[r]);
-    $entryList.appendChild($entry);
-  }
+  // work on code above
 
   if (data.entries.length > 0) {
     $noEntry.className = 'no-entry hidden';
