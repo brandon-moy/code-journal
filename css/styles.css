@@ -109,20 +109,31 @@ ul {
 .pencil {
   color: rgb(86, 43, 129);
   float: right;
+  transition: font-size 0.25s;
+}
+
+.pencil:hover {
+  font-size: 1.25rem;
 }
 
 .star {
   float: right;
   padding-right: 1rem;
+  transition: font-size 0.25s;
+}
+
+.star:hover {
+  font-size: 1.25rem;
 }
 
 .unfavourite {
   color: rgb(86, 43, 129);
-  opacity: 0.5;
+  opacity: 0.25;
 }
 
 .favourite {
   color: gold;
+  font-size: 1.25rem;
 }
 
 .modal-background {
@@ -171,6 +182,11 @@ ul {
 .search-icon {
   margin-right: 0.25rem;
   color: rgb(86, 43, 129);
+  transition: font-size 0.25s;
+}
+
+.search-icon:hover {
+  font-size: 1.25rem;
 }
 
 .search-bar {
