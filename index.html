@@ -20,11 +20,22 @@
   <header>
   </header>
   <main>
+    <div class="modal-background hidden">
+      <div class="modal-box">
+        <div class="column-full">
+          <h5>Are you sure you want to delete this entry?</h5>
+        </div>
+        <div class="column-full space-between">
+          <button class="modal-button cancel">CANCEL</button>
+          <button class="modal-button confirm">CONFIRM</button>
+        </div>
+      </div>
+    </div>
     <div class="head-background">
       <div class="container">
         <nav>
           <p class="journal-head">Code Journal</p>
-          <a href="#entries-page" class="entries-link" id="entries">Entries</a>
+          <a href="#" class="entries-link" id="entries">Entries</a>
         </nav>
       </div>
     </div>
@@ -45,6 +56,7 @@
             <div class="column-full">
               <label for="notes" class="input-title">Notes</label>
               <textarea id="notes" class="user-input notes" required></textarea>
+              <button type="button" class="hidden delete">Delete Entry</button>
               <button type="submit" class="submit">SAVE</button>
             </div>
           </div>
@@ -54,7 +66,7 @@
     <div class="view-tab hidden" data-view="entries">
       <div class="container" id="entries-page">
         <div class="entry-display row space-between center">
-          <h3 class="entry-header">Entries</h3>
+          <h3 class="entry-header" id="entry-header">Entries</h3>
           <a href="#entry-form" class="new-entry" id="entry-form">NEW</a>
         </div>
         <p class="no-entry">

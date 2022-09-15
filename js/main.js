@@ -9,6 +9,10 @@ var $newEntryPage = document.querySelector('.new-entry');
 var $viewTab = document.querySelectorAll('.view-tab');
 var $noEntry = document.querySelector('.no-entry');
 var $entryHeader = document.querySelector('.entry-header');
+var $delete = document.querySelector('.delete');
+var $deleteModal = document.querySelector('.modal-background');
+var $cancel = document.querySelector('.cancel');
+var $confirm = document.querySelector('.confirm');
 
 function updatePhoto(event) {
   $img.setAttribute('src', $photoURL.value);
@@ -43,6 +47,7 @@ function saveEntry(event) {
       }
     }
     data.editing = null;
+    $delete.className = 'hidden delete';
     for (var p = 0; p < $viewTab.length; p++) {
       var viewCheck = $viewTab[p].getAttribute('data-view');
       if (viewCheck === 'entries') {
@@ -59,7 +64,7 @@ function createEntryTree(entry) {
   var $divRow = document.createElement('div');
   var $divColumn = document.createElement('div');
   var $divColumn2 = document.createElement('div');
-  var $img = document.createElement('img');
+  var $newImg = document.createElement('img');
   var $h4 = document.createElement('h4');
   var $pencil = document.createElement('i');
   var $p = document.createElement('p');
@@ -67,20 +72,20 @@ function createEntryTree(entry) {
   $divRow.className = 'row';
   $divColumn.className = 'column-half';
   $divColumn2.className = 'column-half';
-  $img.className = 'journal-image';
+  $newImg.className = 'journal-image';
   $h4.className = 'journal-header';
   $pencil.className = 'fa fa-pencil pencil';
   $p.className = 'journal-text';
 
   $li.setAttribute('data-entry-id', entry.entryId);
-  $img.setAttribute('src', entry.photoURL);
+  $newImg.setAttribute('src', entry.photoURL);
   $h4.textContent = entry.title;
   $p.textContent = entry.notes;
 
   $entryList.appendChild($li);
   $li.appendChild($divRow);
   $divRow.appendChild($divColumn);
-  $divColumn.appendChild($img);
+  $divColumn.appendChild($newImg);
   $divRow.appendChild($divColumn2);
   $divColumn2.appendChild($h4);
   $h4.appendChild($pencil);
@@ -109,6 +114,10 @@ function loadData() {
 
 function changeView(event) {
   var $clickId = event.target.getAttribute('id');
+  $delete.className = 'hidden delete';
+  $form.reset();
+  $img.setAttribute('src', '../images/placeholder-image-square.jpg');
+  $entryHeader.textContent = 'New Entry';
 
   for (var k = 0; k < $viewTab.length; k++) {
     $viewTab[k].className = 'view-tab hidden';
@@ -137,9 +146,51 @@ function editEntry(event) {
         $photoURL.value = data.editing.photoURL;
         $img.setAttribute('src', data.editing.photoURL);
         $notes.value = data.editing.notes;
+        $delete.className = 'delete';
       } else {
         $viewTab[l].className = 'view-tab hidden';
       }
+    }
+  }
+}
+
+function deleteCheck(event) {
+  $deleteModal.className = 'modal-background';
+}
+
+function cancelDelete(event) {
+  $deleteModal.className = 'modal-background hidden';
+}
+
+function confirmDelete(event) {
+  for (var q = 0; q < data.entries.length; q++) {
+    if (data.entries[q] === data.editing) {
+      data.entries.splice(q, 1);
+    }
+  }
+
+  var $lis = document.querySelectorAll('li');
+  for (var r = 0; r < $lis.length; r++) {
+    var $lisId = Number($lis[r].getAttribute('data-entry-id'));
+    if ($lisId === data.editing.entryId) {
+      $entryList.removeChild($lis[r]);
+    }
+  }
+
+  if (data.entries.length > 0) {
+    $noEntry.className = 'no-entry hidden';
+  } else {
+    $noEntry.className = 'no-entry';
+  }
+
+  $deleteModal.className = 'modal-background hidden';
+
+  for (var s = 0; s < $viewTab.length; s++) {
+    var $changeForm = $viewTab[s].getAttribute('data-view');
+    if ($changeForm === 'entries') {
+      $viewTab[s].className = 'view-tab';
+    } else {
+      $viewTab[s].className = 'view-tab hidden';
     }
   }
 }
@@ -150,3 +201,6 @@ window.addEventListener('DOMContentLoaded', loadData);
 $entryTab.addEventListener('click', changeView);
 $newEntryPage.addEventListener('click', changeView);
 $entryList.addEventListener('click', editEntry);
+$delete.addEventListener('click', deleteCheck);
+$cancel.addEventListener('click', cancelDelete);
+$confirm.addEventListener('click', confirmDelete);
