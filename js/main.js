@@ -78,7 +78,7 @@ function createEntryTree(entry) {
   $divRow.className = 'row';
   $divColumn.className = 'column-half';
   $divColumn2.className = 'column-half';
-  $newImg.className = 'journal-image';
+  $newImg.className = 'entry-image';
   $h4.className = 'journal-header';
   if (entry.favourite === true) {
     $star.className = 'fa fa-star star favourite';
