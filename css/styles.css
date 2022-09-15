@@ -114,7 +114,15 @@ ul {
 .star {
   float: right;
   padding-right: 1rem;
+}
+
+.unfavourite {
   color: rgb(86, 43, 129);
+  opacity: 0.5;
+}
+
+.favourite {
+  color: gold;
 }
 
 .modal-background {

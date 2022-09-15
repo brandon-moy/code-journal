@@ -28,6 +28,7 @@ function saveEntry(event) {
     newEntry.photoURL = $photoURL.value;
     newEntry.notes = $notes.value;
     newEntry.entryId = data.nextEntryId;
+    newEntry.favourite = false;
     data.nextEntryId++;
     data.entries.unshift(newEntry);
     $img.setAttribute('src', '../images/placeholder-image-square.jpg');
@@ -77,7 +78,11 @@ function createEntryTree(entry) {
   $divColumn2.className = 'column-half';
   $newImg.className = 'journal-image';
   $h4.className = 'journal-header';
-  $star.className = 'fa fa-star star unfavourite';
+  if (entry.favourite === true) {
+    $star.className = 'fa fa-star star favourite';
+  } else {
+    $star.className = 'fa fa-star star unfavourite';
+  }
   $pencil.className = 'fa fa-pencil pencil';
   $p.className = 'journal-text';
 
@@ -143,35 +148,44 @@ function checkIcon(event) {
 }
 
 function editEntry(event) {
-  if (event.target.tagName === 'I') {
-    for (var l = 0; l < $viewTab.length; l++) {
-      var $editForm = $viewTab[l].getAttribute('data-view');
-      if ($editForm === 'entry-form') {
-        $viewTab[l].className = 'view-tab';
-        $entryHeader.textContent = 'Edit Entry';
-        var dataEntryId = Number(event.target.closest('li').getAttribute('data-entry-id'));
-        for (var m = 0; m < data.entries.length; m++) {
-          if (data.entries[m].entryId === dataEntryId) {
-            data.editing = data.entries[m];
-          }
+  for (var l = 0; l < $viewTab.length; l++) {
+    var $editForm = $viewTab[l].getAttribute('data-view');
+    if ($editForm === 'entry-form') {
+      $viewTab[l].className = 'view-tab';
+      $entryHeader.textContent = 'Edit Entry';
+      var dataEntryId = Number(event.target.closest('li').getAttribute('data-entry-id'));
+      for (var m = 0; m < data.entries.length; m++) {
+        if (data.entries[m].entryId === dataEntryId) {
+          data.editing = data.entries[m];
         }
-        $title.value = data.editing.title;
-        $photoURL.value = data.editing.photoURL;
-        $img.setAttribute('src', data.editing.photoURL);
-        $notes.value = data.editing.notes;
-        $delete.className = 'delete';
-      } else {
-        $viewTab[l].className = 'view-tab hidden';
       }
+      $title.value = data.editing.title;
+      $photoURL.value = data.editing.photoURL;
+      $img.setAttribute('src', data.editing.photoURL);
+      $notes.value = data.editing.notes;
+      $delete.className = 'delete';
+    } else {
+      $viewTab[l].className = 'view-tab hidden';
     }
   }
 }
 
 function favourite(event) {
+  var dataEntryId = Number(event.target.closest('li').getAttribute('data-entry-id'));
   if (event.target.className === 'fa fa-star star unfavourite') {
-    event.target.className = 'fa fa-star star favourite';
+    for (var u = 0; u < data.entries.length; u++) {
+      if (data.entries[u].entryId === dataEntryId) {
+        event.target.className = 'fa fa-star star favourite';
+        data.entries[u].favourite = true;
+      }
+    }
   } else {
-    event.target.className = 'fa fa-star star unfavourite';
+    for (var v = 0; v < data.entries.length; v++) {
+      if (data.entries[v].entryId === dataEntryId) {
+        event.target.className = 'fa fa-star star unfavourite';
+        data.entries[v].favourite = false;
+      }
+    }
   }
 }
 
