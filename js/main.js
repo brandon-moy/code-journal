@@ -13,6 +13,8 @@ var $delete = document.querySelector('.delete');
 var $deleteModal = document.querySelector('.modal-background');
 var $cancel = document.querySelector('.cancel');
 var $confirm = document.querySelector('.confirm');
+var $searchBar = document.querySelector('.search-bar');
+var $searchIcon = document.querySelector('.search-icon');
 
 function updatePhoto(event) {
   $img.setAttribute('src', $photoURL.value);
@@ -195,6 +197,32 @@ function confirmDelete(event) {
   }
 }
 
+var visible = false;
+
+function showSearchBar(event) {
+  if (visible) {
+    visible = false;
+    $searchBar.className = 'search-bar hidden';
+  } else {
+    visible = true;
+    $searchBar.className = 'search-bar';
+  }
+}
+
+function searchEntry(event) {
+  var search = $searchBar.value.toUpperCase();
+  var $lis = document.querySelectorAll('li');
+  for (var t = 0; t < $lis.length; t++) {
+    var $h4 = $lis[t].querySelector('.journal-header');
+    var $h4Check = $h4.textContent.toUpperCase();
+    if ($h4Check.includes(search)) {
+      $lis[t].className = '';
+    } else {
+      $lis[t].className = 'hidden';
+    }
+  }
+}
+
 $photoURL.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
 window.addEventListener('DOMContentLoaded', loadData);
@@ -204,3 +232,13 @@ $entryList.addEventListener('click', editEntry);
 $delete.addEventListener('click', deleteCheck);
 $cancel.addEventListener('click', cancelDelete);
 $confirm.addEventListener('click', confirmDelete);
+$searchBar.addEventListener('input', searchEntry);
+$searchIcon.addEventListener('click', showSearchBar);
+$searchBar.addEventListener('blur', hideSearchBar);
+
+function hideSearchBar(event) {
+  if ($searchBar.value === '') {
+    visible = false;
+    $searchBar.className = 'search-bar hidden';
+  }
+}
