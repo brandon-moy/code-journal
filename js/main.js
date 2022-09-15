@@ -15,6 +15,8 @@ var $cancel = document.querySelector('.cancel');
 var $confirm = document.querySelector('.confirm');
 var $searchBar = document.querySelector('.search-bar');
 var $searchIcon = document.querySelector('.search-icon');
+var $imgModal = document.querySelector('.img-modal-background');
+var $enlargeImg = document.querySelector('.modal-image');
 
 function updatePhoto(event) {
   $img.setAttribute('src', $photoURL.value);
@@ -76,7 +78,7 @@ function createEntryTree(entry) {
   $divRow.className = 'row';
   $divColumn.className = 'column-half';
   $divColumn2.className = 'column-half';
-  $newImg.className = 'journal-image';
+  $newImg.className = 'entry-image';
   $h4.className = 'journal-header';
   if (entry.favourite === true) {
     $star.className = 'fa fa-star star favourite';
@@ -144,6 +146,8 @@ function checkIcon(event) {
     editEntry(event);
   } else if (event.target.className === 'fa fa-star star unfavourite' || event.target.className === 'fa fa-star star favourite') {
     favourite(event);
+  } else if (event.target.tagName === 'IMG') {
+    enlargeImage(event);
   }
 }
 
@@ -187,6 +191,17 @@ function favourite(event) {
       }
     }
   }
+}
+
+function enlargeImage(event) {
+  $imgModal.className = 'img-modal-background';
+  var $img = event.target.getAttribute('src');
+  $enlargeImg.setAttribute('src', $img);
+  $enlargeImg.focus();
+}
+
+function hideImgModal(event) {
+  $imgModal.className = 'img-modal-background hidden';
 }
 
 function deleteCheck(event) {
@@ -276,3 +291,4 @@ $confirm.addEventListener('click', confirmDelete);
 $searchBar.addEventListener('input', searchEntry);
 $searchIcon.addEventListener('click', showSearchBar);
 $searchBar.addEventListener('blur', hideSearchBar);
+$imgModal.addEventListener('click', hideImgModal);
