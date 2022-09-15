@@ -197,7 +197,7 @@ function enlargeImage(event) {
   $imgModal.className = 'img-modal-background';
   var $img = event.target.getAttribute('src');
   $enlargeImg.setAttribute('src', $img);
-
+  $enlargeImg.focus();
 }
 
 function hideImgModal(event) {
@@ -291,4 +291,4 @@ $confirm.addEventListener('click', confirmDelete);
 $searchBar.addEventListener('input', searchEntry);
 $searchIcon.addEventListener('click', showSearchBar);
 $searchBar.addEventListener('blur', hideSearchBar);
-$enlargeImg.addEventListener('blur', hideImgModal);
+$imgModal.addEventListener('click', hideImgModal);
