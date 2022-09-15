@@ -200,6 +200,10 @@ function enlargeImage(event) {
 
 }
 
+function hideImgModal(event) {
+  $imgModal.className = 'img-modal-background hidden';
+}
+
 function deleteCheck(event) {
   $deleteModal.className = 'modal-background';
 }
@@ -287,3 +291,4 @@ $confirm.addEventListener('click', confirmDelete);
 $searchBar.addEventListener('input', searchEntry);
 $searchIcon.addEventListener('click', showSearchBar);
 $searchBar.addEventListener('blur', hideSearchBar);
+$enlargeImg.addEventListener('blur', hideImgModal);
