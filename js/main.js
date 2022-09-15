@@ -14,6 +14,7 @@ var $deleteModal = document.querySelector('.modal-background');
 var $cancel = document.querySelector('.cancel');
 var $confirm = document.querySelector('.confirm');
 var $searchBar = document.querySelector('.search-bar');
+var $searchIcon = document.querySelector('.search-icon');
 
 function updatePhoto(event) {
   $img.setAttribute('src', $photoURL.value);
@@ -206,6 +207,11 @@ $delete.addEventListener('click', deleteCheck);
 $cancel.addEventListener('click', cancelDelete);
 $confirm.addEventListener('click', confirmDelete);
 $searchBar.addEventListener('input', searchEntry);
+$searchIcon.addEventListener('click', test);
+
+function test(event) {
+
+}
 
 function searchEntry(event) {
   var search = $searchBar.value.toUpperCase();
